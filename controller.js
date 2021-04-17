@@ -1,48 +1,55 @@
 var app = angular.module("mainApp", ['ui.bootstrap']);
-app.controller('people', ['$scope', '$http', '$uibModal', function ($scope, $http, $modal) {
+app.component('people',
+{
+    templateUrl:'./index.html',
+    bindings:{
+        data:''
+    },
+controller : function ($http, $modal) {
+    
 
 
 
     $http.get("./migration.json").then(function (response) {
         console.log(response.data.records);
-        $scope.persons = response.data.records;
+        this.persons = response.data.records;
     });
 
     var modalInstance = null;
-    $scope.addRecord = function () {
+    this.addRecord = function () {
         modalInstance = $modal.open({
             animation: false,
             templateUrl: "./add.html",
             controller: 'addCtrl',
-            scope: $scope,
+            scope: this,
             size: '',
             resolve: {
             }
         });
     }
-    $scope.dataShow = {
+    this.dataShow = {
         id: '0',
         firstName: 'ddd',
         sirName: 'ddd',
         isActive: 'true',
     }
-    $scope.viewRecord = function (id) {
+    this.viewRecord = function (id) {
         console.log(id)
         if (id > 0) {
             $http.get('./migration.json')
 
                 .then(function (response) {
-                    var element = $scope.persons.find((el) => el.id == id);
-                    $scope.dataShow.id = element.id;
-                    $scope.dataShow.firstName = element.firstName;
-                    $scope.dataShow.sirName = element.sirName;
-                    $scope.dataShow.isActive = element.isActive;
+                    var element = this.persons.find((el) => el.id == id);
+                    this.dataShow.id = element.id;
+                    this.dataShow.firstName = element.firstName;
+                    this.dataShow.sirName = element.sirName;
+                    this.dataShow.isActive = element.isActive;
                     console.log(element)
                     modalInstance = $modal.open({
                         animation: false,
                         templateUrl: './read.html',
                         controller: 'viewCtrl',
-                        scope: $scope,
+                        scope: this,
                         size: '',
                         resolve: {
                             records: function () {
@@ -54,20 +61,20 @@ app.controller('people', ['$scope', '$http', '$uibModal', function ($scope, $htt
 
         }
     }
-    $scope.editRecord = function (id) {
+    this.editRecord = function (id) {
         if (id > 0) {
             $http.get('./migration.json')
                 .then(function (response) {
-                    var element = $scope.persons.find((el) => el.id == id);
-                    $scope.dataUpdate.id = element.id;
-                    $scope.dataUpdate.firstName = element.firstName;
-                    $scope.dataUpdate.sirName = element.sirName;
-                    $scope.dataUpdate.isActive = element.isActive;
+                    var element = this.persons.find((el) => el.id == id);
+                    this.dataUpdate.id = element.id;
+                    this.dataUpdate.firstName = element.firstName;
+                    this.dataUpdate.sirName = element.sirName;
+                    this.dataUpdate.isActive = element.isActive;
                     modalInstance = $modal.open({
                         animation: false,
                         templateUrl: './update.html',
                         controller: 'updateCtrl',
-                        scope: $scope,
+                        scope: this,
                         size: '',
                         resolve: {
                             record: function () {
@@ -79,67 +86,23 @@ app.controller('people', ['$scope', '$http', '$uibModal', function ($scope, $htt
         }
 
     }
-    $scope.edited = -1;
-    $scope.dataUpdate = {
+    this.edited = -1;
+    this.dataUpdate = {
         id: '0',
         firstName: 'ddd',
         sirName: 'ddd',
         isActive: 'true',
     };
-    $scope.deletRecord = function (id) {
+    this.deletRecord = function (id) {
         if (confirm('Are you sure you want to delete this?')) {
-            $scope.persons.splice(id, 1);
+            this.persons.splice(id, 1);
         }
     }
 
-}]);
-app.controller('addCtrl', ['$scope', function ($scope) {
-    $scope.saveEmp = function () {
-        $scope.data = {};
-
-        if (!angular.isDefined($scope.firstName) || $scope.firstName === '') {
-            alert('first name  is empty');
-            return;
-        }
-        else if (!angular.isDefined($scope.sirName) || $scope.sirName === '') {
-            alert('sir name is empty');
-            return;
-        } else if (!angular.isDefined($scope.isActive) || $scope.isActive === '') {
-            alert('is active is empty');
-            return;
-        } else {
-            $scope.data.firstName = $scope.firstName;
-            $scope.data.sirName = $scope.sirName;
-            $scope.data.isActive = $scope.isActive;
-            console.log($scope.data);
-        }
-        $scope.cancelModal();
-        $scope.saveRecord($scope.data);
-    };
-
-}]);
+}});
 
 
 
-app.controller('viewCtrl', ['$scope', function ($scope) {
-    function init() {
-        $scope.person = $scope.dataShow;
-    }
-    init();
-
-}]);
-
-app.controller('updateCtrl', ['$scope', function ($scope) {
-    $scope.employee = {};
-    function init() {
-        $scope.person = $scope.dataUpdate;
-    }
-    $scope.finishEdit = function (index) {
-        $scope.persons[index] = $scope.dataUpdate;
-        $scope.edited = -1;
-    };
-    init();
 
 
 
-}]);
