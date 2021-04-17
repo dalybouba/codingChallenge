@@ -1,0 +1,16 @@
+
+
+
+
+{
+    "complilerOptions":{
+        "target":"ES5",
+        "sourceMap":true,
+        "experimentalDecorators":true,
+        "removeComments":false,
+        "lib":["es2017","dom"]
+    },
+    "exclude":[
+        "node_modules"
+    ]
+}

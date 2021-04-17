@@ -11,4 +11,4 @@ app.component('viewCtrl',{
     }
     init();
 
-}]);
+}});
