@@ -5,10 +5,13 @@ app.component('viewCtrl',{
     bindings:{
         data:''
     },
-    controller :function () {
-    function init() {
+    controller : class viewCtrl{
+        dataShow:{};
+        person:{};
+    constructor () { }
+     ngOnInit() {
         this.person = this.dataShow;
-    }
-    init();
+     }
+
 
 }});

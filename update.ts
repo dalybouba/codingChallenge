@@ -3,17 +3,18 @@ templateUrl:'./index.html',
 bindings:{
     data:''
 },
-controller : function () {
-    this.employee = {};
-    function init() {
+controller :   class updateCtrl{ 
+    person:{};
+    dataUpdate:{};
+    persons:any;
+    edited:number
+constructor () {}
+    
+    ngOnInit() {
         this.person = this.dataUpdate;
     }
-    this.finishEdit = function (index) {
+    finishEdit(index) {
         this.persons[index] = this.dataUpdate;
         this.edited = -1;
-    };
-    init();
-
-
-
+    }
 }});
