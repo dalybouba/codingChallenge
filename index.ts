@@ -1,4 +1,4 @@
-import "./add";
-import "./read";
-import "./update";
+import "./add/add";
+import "./read/read";
+import "./update/update";
 import "./controller";
