@@ -1,0 +1,46 @@
+<div class="container">
+    <div ng-controller="people">
+    <h2> list</h2>
+    <div class="row well">
+        <button type="button" class="btn btn-info pull-right" ng-click="addRecord()"><i
+                class="glyphicon glyphicon-plus">
+            </i> Add New</button>
+    </div>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>First name</th>
+                <th>Sir name</th>
+                <th>Is active</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr st-select-row="row" st-select-mode="multiple" ng-repeat="person in persons">
+                <td>{{person.id}}</td>
+                <td>{{person.firstName}}</td>
+                <td>{{person.sirName}}</td>
+                <td>{{person.isActive}}</td>
+                <td>
+                    <div class="btn-group" role="group" aria-label="...">
+                        <div class="row well">
+                            <button type="button" class="btn btn-info" ng-click="viewRecord(person.id)"><i
+                                    class="glyphicon glyphicon-search"></i></button>
+    
+                            <button type="button" class="btn btn-default" ng-click="editRecord(person.id)"><i
+                                    class="glyphicon glyphicon-pencil">
+                                </i></button>
+                            <button type="button" class="btn btn-danger" ng-click="deletRecord($index)"><i
+                                    class="glyphicon glyphicon-trash">
+                                </i></button>
+                        </div>
+    
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    </div>
+       
+    </div> 
