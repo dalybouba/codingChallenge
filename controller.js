@@ -100,6 +100,10 @@ controller : function ($http, $modal) {
     }
 
 }});
+angular.element(document).ready(function(){
+    angular.bootstrap(document.body,['app'])
+})
+
 
 
 
