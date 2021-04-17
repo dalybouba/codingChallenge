@@ -18,4 +18,4 @@ constructor () {}
         this.persons[index] = this.dataUpdate;
         this.edited = -1;
     }
-}});
+}

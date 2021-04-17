@@ -1,0 +1,21 @@
+{
+    "complilerOptions":{
+        "allowJs": true,
+        "target":"ES5",
+        "sourceMap":true,
+        "module":"common.js",
+       "moduleResolution":"node",
+        "experimentalDecorators":true,
+        "removeComments":false,
+        "lib":["es2017","dom"]
+    },
+    "compileOnSave": true,
+    "exclude":[
+        "node_modules",
+        "aot/"
+    ],
+    "angularCompilerOptions":{
+        "genDir":"aot/",
+        "skipMetadataEmit":true
+    }
+}
