@@ -26,67 +26,71 @@ app.controller('people', ['$scope', '$http', '$uibModal', function ($scope, $htt
         sirName: 'ddd',
         isActive: 'true',
     }
-    $scope.viewRecord = function(id){
+    $scope.viewRecord = function (id) {
         console.log(id)
-        if(id > 0) {
-          $http.get('./migration.json')
-          
-            .then(function(response){
-                var element= $scope.persons.find((el)=> el.id == id);
-                $scope.dataShow.id= element.id;
-                $scope.dataShow.firstName= element.firstName;
-                $scope.dataShow.sirName= element.sirName;
-                $scope.dataShow.isActive= element.isActive;
-                console.log(element)
-                modalInstance = $modal.open({
-                  animation: false,
-                  templateUrl: './read.html',
-                  controller: 'viewCtrl',
-                  scope: $scope,
-                  size: '',
-                  resolve: {
-                      records: function () {
-                          return response.data;
-                      }
-                  }
-               });
-            });
-         
+        if (id > 0) {
+            $http.get('./migration.json')
+
+                .then(function (response) {
+                    var element = $scope.persons.find((el) => el.id == id);
+                    $scope.dataShow.id = element.id;
+                    $scope.dataShow.firstName = element.firstName;
+                    $scope.dataShow.sirName = element.sirName;
+                    $scope.dataShow.isActive = element.isActive;
+                    console.log(element)
+                    modalInstance = $modal.open({
+                        animation: false,
+                        templateUrl: './read.html',
+                        controller: 'viewCtrl',
+                        scope: $scope,
+                        size: '',
+                        resolve: {
+                            records: function () {
+                                return response.data;
+                            }
+                        }
+                    });
+                });
+
         }
     }
-    $scope.editRecord = function(id){
-        if(id > 0) {
-           $http.get('./migration.json')
-             .then(function(response){
-                var element= $scope.persons.find((el)=> el.id == id);
-                $scope.dataUpdate.id= element.id;
-                $scope.dataUpdate.firstName= element.firstName;
-                $scope.dataUpdate.sirName= element.sirName;
-                $scope.dataUpdate.isActive= element.isActive;
-                 modalInstance = $modal.open({
-                   animation: false,
-                   templateUrl: './update.html',
-                   controller: 'updateCtrl',
-                   scope: $scope,
-                   size: '',
-                   resolve: {
-                       record: function () {
-                           return response.data;
-                       }
-                   }
+    $scope.editRecord = function (id) {
+        if (id > 0) {
+            $http.get('./migration.json')
+                .then(function (response) {
+                    var element = $scope.persons.find((el) => el.id == id);
+                    $scope.dataUpdate.id = element.id;
+                    $scope.dataUpdate.firstName = element.firstName;
+                    $scope.dataUpdate.sirName = element.sirName;
+                    $scope.dataUpdate.isActive = element.isActive;
+                    modalInstance = $modal.open({
+                        animation: false,
+                        templateUrl: './update.html',
+                        controller: 'updateCtrl',
+                        scope: $scope,
+                        size: '',
+                        resolve: {
+                            record: function () {
+                                return response.data;
+                            }
+                        }
+                    });
                 });
-             });
         }
-     
-     }
-     $scope.edited = -1;
-     $scope.dataUpdate = {
-         id: '0',
-         firstName: 'ddd',
-         sirName: 'ddd',
-         isActive: 'true',
-     };
 
+    }
+    $scope.edited = -1;
+    $scope.dataUpdate = {
+        id: '0',
+        firstName: 'ddd',
+        sirName: 'ddd',
+        isActive: 'true',
+    };
+    $scope.deletRecord = function (id) {
+        if (confirm('Are you sure you want to delete this?')) {
+            $scope.persons.splice(id, 1);
+        }
+    }
 
 }]);
 app.controller('addCtrl', ['$scope', function ($scope) {
@@ -117,25 +121,25 @@ app.controller('addCtrl', ['$scope', function ($scope) {
 
 
 
-app.controller('viewCtrl',  ['$scope', function($scope) {
-	function init(){
+app.controller('viewCtrl', ['$scope', function ($scope) {
+    function init() {
         $scope.person = $scope.dataShow;
     }
-	init();
-	
+    init();
+
 }]);
 
-app.controller('updateCtrl',  ['$scope',  function($scope) {
-	$scope.employee = {};
-	function init(){
+app.controller('updateCtrl', ['$scope', function ($scope) {
+    $scope.employee = {};
+    function init() {
         $scope.person = $scope.dataUpdate;
     }
     $scope.finishEdit = function (index) {
         $scope.persons[index] = $scope.dataUpdate;
         $scope.edited = -1;
     };
-	init();
-  
+    init();
 
-  
+
+
 }]);
