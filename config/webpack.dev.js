@@ -7,7 +7,10 @@ module.exports={
 
 
     entry:{
-        'ng1':'./public/index.ts'
+        'polyfills':'./polyfills.ts',
+        'vendor':'./vendors.ts',
+        'ng1':'./index.ts',
+        'app':'./main.ts'
     },
     output:{
         path: helpers.root('dist/dev'),
@@ -30,18 +33,34 @@ module.exports={
             plugins: {
 new webpack.optimize.CommonsChunkPlugin({
     name:'common',
+    chunks:['vendor','app'],
+    minChunks:2
+}),
+new webpack.optimize.CommonsChunkPlugin({
+    name:'vendor',
     minChunks:Infinity
 }),
 new HtmlWebpackPlugin({
-    template:'config/index.html'
+    template:'config/index.html',
+    chunks:['app']
 }),
-new webpack.DefinePlugin(
+new webpack.DefinePlugin
+(
     {
         'process.env':{
             'ENV':JSON.stringify(ENV)
         }
     }
+),
+
+new webpack.ContextReplacementPlugin(
+    /angular(\\|\/)core(\\|\/)@angular/,
+    helpers.root('./src')
 )
+
+new BundleAnalyzerPlugin({
+    AnalyserMode:'static'
+})
             }
          ]
     }
