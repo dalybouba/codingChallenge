@@ -26,6 +26,37 @@ app.controller('people', ['$scope', '$http', '$uibModal', function ($scope, $htt
         sirName: 'ddd',
         isActive: 'true',
     }
+
+
+
+    $scope.viewRecord = function(id){
+        console.log(id)
+        if(id > 0) {
+          $http.get('./migration.json')
+          
+            .then(function(response){
+                var element= $scope.persons.find((el)=> el.id == id);
+                $scope.dataShow.id= element.id;
+                $scope.dataShow.firstName= element.firstName;
+                $scope.dataShow.sirName= element.sirName;
+                $scope.dataShow.isActive= element.isActive;
+                console.log(element)
+                modalInstance = $modal.open({
+                  animation: false,
+                  templateUrl: './view_record.html',
+                  controller: 'empViewCtrl',
+                  scope: $scope,
+                  size: '',
+                  resolve: {
+                      records: function () {
+                          return response.data;
+                      }
+                  }
+               });
+            });
+         
+        }
+    }
 }]);
 app.controller('addEmpCtrl', ['$scope', function ($scope) {
     $scope.saveEmp = function () {
@@ -51,4 +82,14 @@ app.controller('addEmpCtrl', ['$scope', function ($scope) {
         $scope.saveRecord($scope.data);
     };
 
+}]);
+
+
+
+app.controller('empViewCtrl',  ['$scope', function($scope) {
+	function init(){
+        $scope.person = $scope.dataShow;
+    }
+	init();
+	
 }]);
