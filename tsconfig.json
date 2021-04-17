@@ -4,6 +4,7 @@
 
 {
     "complilerOptions":{
+        "allowJs": true,
         "target":"ES5",
         "sourceMap":true,
         "module":"common.js",

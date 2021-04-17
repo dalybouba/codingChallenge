@@ -1,6 +1,6 @@
 <div class="clearfix" id="edit-modal-user-views">
     <div class="modal-header model-grey-color">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close" ng-click="cancelModal()"><span aria-hidden="true">×</span></button>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="cancelModal()"><span aria-hidden="true">×</span></button>
       <h4 class="modal-title">Edit View : {{person.firstName}}</h4>
     </div>
     <div class="modal-body">
@@ -9,7 +9,7 @@
               <label class="col-sm-3 control-label">First Name <sup class="sup-color">*</sup></label>
   
               <div class="col-sm-8">
-                 <input type="text" ng-model="person.firstName" placeholder="Employee Name" class="form-control">
+                 <input type="text" [(ngModel)]="person.firstName" placeholder="Employee Name" class="form-control">
               </div>
               <span class="help-button" uib-tooltip="Employee firstName" tooltip-placement="left">?</span>
            </div>
@@ -17,7 +17,7 @@
               <label class="col-sm-3 control-label">Sir Name <sup class="sup-color">*</sup></label>
   
               <div class="col-sm-8">
-                 <input type="text" ng-model="person.sirName" placeholder="Employee Age" class="form-control">
+                 <input type="text" [(ngModel)]="person.sirName" placeholder="Employee Age" class="form-control">
               </div>
               <span class="help-button" uib-tooltip="Please enter emp sirName" tooltip-placement="left">?</span>
            </div>
@@ -25,14 +25,14 @@
               <label class="col-sm-3 control-label">Is Active <sup class="sup-color">*</sup></label>
   
               <div class="col-sm-8">
-                 <input type="text" ng-model="person.isActive" placeholder="Employee Salary" class="form-control">
+                 <input type="text" [(ngModel)]="person.isActive" placeholder="Employee Salary" class="form-control">
               </div>
            </div>
           </form>
            
     </div>
     <div class="modal-footer model-grey-color">
-      <button class="btn btn-success" ng-click="finishEdit()"><i class="glyphicon glyphicon-floppy-save"></i> Update</button>
-      <button class="btn btn-danger" ng-click="cancelModal()"><i class="glyphicon glyphicon-remove"></i> Close</button>
+      <button class="btn btn-success" (click)="finishEdit()"><i class="glyphicon glyphicon-floppy-save"></i> Update</button>
+      <button class="btn btn-danger" (click)="cancelModal()"><i class="glyphicon glyphicon-remove"></i> Close</button>
     </div>
   </div>

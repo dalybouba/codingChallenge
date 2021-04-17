@@ -1,11 +1,11 @@
 
-app.component('viewCtrl',{
-    
+import { Component } from "@angular/core";
+
+@Component({
+    selector: 'read',
     templateUrl:'./read.html',
-    bindings:{
-        data:''
-    },
-    controller : class viewCtrl{
+})
+    export  class ReadComponent {
         dataShow:{};
         person:{};
     constructor () { }
@@ -14,4 +14,4 @@ app.component('viewCtrl',{
      }
 
 
-}});
+}

@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule }   from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { AppComponent } from "./app.component";
+import { AddComponent } from "./add/add.component";
 @NgModule({
 imports:[
     BrowserModule,
@@ -11,7 +12,8 @@ imports:[
     UpgradeModule
 ],
 declarations :[
-    AppComponent
+    AppComponent,
+    AddComponent
 ],
 providers :[
 

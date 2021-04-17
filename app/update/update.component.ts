@@ -1,9 +1,10 @@
-app.component('updateCtrl',{
-templateUrl:'./index.html',
-bindings:{
-    data:''
-},
-controller :   class updateCtrl{ 
+import { Component } from "@angular/core";
+
+@Component({
+    selector: 'update',
+    templateUrl:'./update.html',
+})
+    export   class UpdateComponent { 
     person:{};
     dataUpdate:{};
     persons:any;

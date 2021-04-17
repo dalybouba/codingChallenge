@@ -1,9 +1,12 @@
-angular.module('app').component('addCtrl',{
-    templateUrl:'./index.html',
-    bindings:{
-        data:''
-    },
-controller : class addCtrl{
+import { Component } from "@angular/core";
+
+@Component({
+    selector: 'add',
+    templateUrl:'./add.html',
+})
+    
+
+export  class AddComponent {
     data:{}={};
     firstName:string;
     sirName:string;
@@ -16,4 +19,4 @@ constructor () {}
             console.log(this.data);       
     };
 
-}});
+};

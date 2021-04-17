@@ -1,4 +1,4 @@
-import "./add/add";
-import "./read/read";
-import "./update/update";
+import "./app/add/add";
+import "./app/read/read.component";
+import "./app/update/update";
 import "./controller";
