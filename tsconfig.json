@@ -1,19 +1,21 @@
-
-
-
-
+/* To learn more about this file see: https://angular.io/config/tsconfig. */
 {
-    "complilerOptions":{
-        "allowJs": true,
-        "target":"ES5",
-        "sourceMap":true,
-        "module":"common.js",
-       "moduleResolution":"node",
-        "experimentalDecorators":true,
-        "removeComments":false,
-        "lib":["es2017","dom"]
-    },
-    "exclude":[
-        "node_modules"
+  "compileOnSave": false,
+  "compilerOptions": {
+    "baseUrl": "./",
+    "outDir": "./dist/out-tsc",
+    "sourceMap": true,
+    "declaration": false,
+    "downlevelIteration": true,
+    "experimentalDecorators": true,
+    "moduleResolution": "node",
+    "strictPropertyInitialization": false,
+    "importHelpers": true,
+    "target": "es2015",
+    "module": "es2020",
+    "lib": [
+      "es2018",
+      "dom"
     ]
+  }
 }
